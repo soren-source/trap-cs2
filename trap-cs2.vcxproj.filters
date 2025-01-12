@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien\core">
+      <UniqueIdentifier>{300b1811-95af-45cb-9b92-21896dc5d3d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\core">
+      <UniqueIdentifier>{dec7117c-d161-47c3-8261-d950d9636e97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\engine">
+      <UniqueIdentifier>{4faa29c8-e505-44e7-8cca-1255c60d76df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\engine">
+      <UniqueIdentifier>{d9cf2ced-fe02-4082-ab2a-aaef7158ea6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\memory">
+      <UniqueIdentifier>{b2762578-7c6f-4586-8a4a-964512daad15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\memory">
+      <UniqueIdentifier>{dd0ac22f-b91b-4564-b2ea-ae444d0b5c7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\engine\EngineClasses">
+      <UniqueIdentifier>{f97e21f3-2673-4a4c-a110-00d553905768}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\startup.cpp">
+      <Filter>Quelldateien\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\CInterfaces.cpp">
+      <Filter>Quelldateien\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\memory\memory.cpp">
+      <Filter>Quelldateien\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\CEntitiyListSystem.cpp">
+      <Filter>Quelldateien\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\Engine.cpp">
+      <Filter>Quelldateien\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\SchemaSystem.cpp">
+      <Filter>Quelldateien\engine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\core\startup.hpp">
+      <Filter>Headerdateien\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\CInterfaces.hpp">
+      <Filter>Headerdateien\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\memory\memory.hpp">
+      <Filter>Headerdateien\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\CEntitiyListSystem.hpp">
+      <Filter>Headerdateien\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\Engine.hpp">
+      <Filter>Headerdateien\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\SchemaSystem.hpp">
+      <Filter>Headerdateien\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\EngineClasses\CBaseEntity.hpp">
+      <Filter>Headerdateien\engine\EngineClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\EngineClasses\EngineClassBase.hpp">
+      <Filter>Headerdateien\engine\EngineClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\EngineClasses\CEntityInstance.hpp">
+      <Filter>Headerdateien\engine\EngineClasses</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
