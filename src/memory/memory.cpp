@@ -5,17 +5,17 @@
 #pragma warning(disable : 4996)
 #define FIND_NT_HEADER(x) reinterpret_cast<PIMAGE_NT_HEADERS>(uint64_t(x) + ((PIMAGE_DOS_HEADER)(x))->e_lfanew)
 
-uint64_t memory::fix_call( uint8_t* address )
+uint64_t memory::FixCall( uint8_t* address )
 {
     return reinterpret_cast< uint64_t >( address + *reinterpret_cast< int32_t* >( address + 1 ) + 5 );
 }
 
-uint64_t memory::fix_mov( uint8_t* patternMatch )
+uint64_t memory::FixMov( uint8_t* patternMatch )
 {
     return reinterpret_cast< uint64_t >( patternMatch + *reinterpret_cast< int32_t* >( patternMatch + 3 ) + 7 );
 }
 
-uint8_t* memory::find_pattern( const std::string_view module, const std::string_view signature )
+uint8_t* memory::FindPattern( const std::string_view module, const std::string_view signature )
 {
     std::vector<uint8_t> signature_bytes( signature.size( ) + 1 );
 
@@ -35,7 +35,8 @@ uint8_t* memory::find_pattern( const std::string_view module, const std::string_
     uint8_t* found_bytes = nullptr;
 
     {
-        const auto image_start = reinterpret_cast< uint8_t* >( this->get_module_base( module.data( ) ) );
+        const auto image_start = reinterpret_cast< uint8_t* >( this->GetModuleBase( module.data( ) ) );
+        printf( "%s %p\n", module.data( ), image_start );
         const auto image_end = image_start + FIND_NT_HEADER( image_start )->OptionalHeader.SizeOfImage;
 
         const auto result = std::search( image_start, image_end, signature_bytes.cbegin( ), signature_bytes.cend( ), [ ] ( uint8_t left, uint8_t right ) -> bool
@@ -47,7 +48,7 @@ uint8_t* memory::find_pattern( const std::string_view module, const std::string_
     return found_bytes;
 }
 
-uint8_t* memory::find_pattern( const std::string_view signature )
+uint8_t* memory::FindPattern( const std::string_view signature )
 {
     std::vector<uint8_t> signature_bytes( signature.size( ) + 1 );
 
@@ -67,7 +68,7 @@ uint8_t* memory::find_pattern( const std::string_view signature )
     uint8_t* found_bytes = nullptr;
 
     {
-        const auto image_start = reinterpret_cast< uint8_t* >( this->get_module_base( "" ) );
+        const auto image_start = reinterpret_cast< uint8_t* >( this->GetModuleBase( "" ) );
         const auto image_end = image_start + FIND_NT_HEADER( image_start )->OptionalHeader.SizeOfImage;
 
         const auto result = std::search( image_start, image_end, signature_bytes.cbegin( ), signature_bytes.cend( ), [ ] ( uint8_t left, uint8_t right ) -> bool
@@ -79,7 +80,7 @@ uint8_t* memory::find_pattern( const std::string_view signature )
     return found_bytes;
 }
 
-uintptr_t memory::get_module_base( std::string module )
+uintptr_t memory::GetModuleBase( std::string module )
 {
     PPEB peb = ( PPEB )__readgsqword( 0x60 );;
     if ( !peb ) return 0;

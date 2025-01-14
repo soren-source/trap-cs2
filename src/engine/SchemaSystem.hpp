@@ -227,7 +227,7 @@ private:
 
 };
 
-inline std::unique_ptr<SchemaManager> g_SchemaManager = std::make_unique<SchemaManager>( );
+inline std::unique_ptr<SchemaManager> g_SchemaManager;
 
 class SchemaSystem {
 public:

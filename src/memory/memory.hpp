@@ -8,12 +8,12 @@ public:
     explicit memory( ) = default;
     ~memory( ) = default;
 
-    uint64_t fix_call( uint8_t* address );
-    uint64_t fix_mov( uint8_t* patternMatch );
-    uint8_t* find_pattern( const std::string_view module, const std::string_view signature );
-    uint8_t* find_pattern( const std::string_view signature );
+    uint64_t FixCall( uint8_t* address );
+    uint64_t FixMov( uint8_t* patternMatch );
+    uint8_t* FindPattern( const std::string_view module, const std::string_view signature );
+    uint8_t* FindPattern( const std::string_view signature );
 
-    uintptr_t get_module_base( std::string module );
+    uintptr_t GetModuleBase( std::string module );
     std::string m_altv_module_name;
 
     template <typename T = uint8_t*>
@@ -54,7 +54,7 @@ public:
 private:
 };
 
-inline memory g_memory;
+inline memory g_Memory;
 
 typedef struct _PEB_LDR_DATA {
     BYTE       Reserved1[ 8 ];
