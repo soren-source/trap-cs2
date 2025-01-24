@@ -85,6 +85,18 @@
     <Filter Include="Quelldateien\engine\EngineClasses">
       <UniqueIdentifier>{bb77d5f3-8d96-4952-bbde-516e148e488e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\classes">
+      <UniqueIdentifier>{db8949da-db06-4f06-9522-4c67543de4a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\backend\keybinding">
+      <UniqueIdentifier>{abef0d25-47cc-422e-b149-8f7b1c4b9797}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\backend\keybinding">
+      <UniqueIdentifier>{03a9c238-ada4-4c1d-b4a9-d2e108ec35a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\backend\classes">
+      <UniqueIdentifier>{044dd5e2-70b4-438a-8248-3896ebfd7845}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -167,6 +179,12 @@
     </ClCompile>
     <ClCompile Include="src\engine\EngineClasses\CBaseEntity.cpp">
       <Filter>Quelldateien\engine\EngineClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\backend\keybinding\KeyHandler.cpp">
+      <Filter>Quelldateien\backend\keybinding</Filter>
+    </ClCompile>
+    <ClCompile Include="src\classes\Vector.cpp">
+      <Filter>Quelldateien\backend\classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -298,6 +316,18 @@
     </ClInclude>
     <ClInclude Include="src\backend\events\PlayerEvents\OnRemovePlayer.hpp">
       <Filter>Headerdateien\backend\events\PlayerEvents</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\EngineClasses\CEntityIdentity.hpp">
+      <Filter>Headerdateien\engine\EngineClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\classes\Vector.hpp">
+      <Filter>Headerdateien\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\EngineClasses\CGameSceneNode.hpp">
+      <Filter>Headerdateien\engine\EngineClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\backend\keybinding\KeyHandler.hpp">
+      <Filter>Headerdateien\backend\keybinding</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -15,15 +15,15 @@ public:
 
 	auto Uninitialize( ) -> void;
 
+	auto BeginImGuiFrame( ) -> void;
+	auto EndImGuiFrame( ) -> void;
+
 	WNDPROC m_OriginalWndProc = nullptr;
 private:
 	typedef HRESULT( __fastcall* tPresent )( IDXGISwapChain*, UINT, UINT );
 	Hook<tPresent> *m_HookContext;
 
 	auto InitializeImGui( ) -> bool;
-
-	auto BeginImGuiFrame( ) -> void;
-	auto EndImGuiFrame( ) -> void;
 
 	HWND m_Window = 0;
 	ID3D11Device* m_pDevice = nullptr;

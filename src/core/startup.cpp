@@ -31,8 +31,10 @@ auto Startup::IntializeCheatStart( ) -> void
 	while ( !GetAsyncKeyState( VK_END ) & 1 ) {
 		std::this_thread::sleep_for( std::chrono::milliseconds( 10 ) );
 	}
-
+	std::cout << "[-] Unloading Trap...\n";
 	MH_DisableHook( MH_ALL_HOOKS );
+	std::cout << "[-] Disabled all Hooks...\n";
 	MH_RemoveHook( MH_ALL_HOOKS );
 	g_PresentHook->Uninitialize( );
+	std::cout << "[-] Removed all Hooks...\n";
 }

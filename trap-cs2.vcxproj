@@ -22,6 +22,8 @@
     <ClCompile Include="src\backend\caching\EntityCaching.cpp" />
     <ClCompile Include="src\backend\events\PlayerEvents\OnAddPlayer.cpp" />
     <ClCompile Include="src\backend\events\PlayerEvents\OnRemovePlayer.cpp" />
+    <ClCompile Include="src\backend\keybinding\KeyHandler.cpp" />
+    <ClCompile Include="src\classes\Vector.cpp" />
     <ClCompile Include="src\core\startup.cpp" />
     <ClCompile Include="src\engine\CEntitiyListSystem.cpp" />
     <ClCompile Include="src\engine\CInterfaces.cpp" />
@@ -52,12 +54,16 @@
     <ClInclude Include="src\backend\caching\EntityCaching.hpp" />
     <ClInclude Include="src\backend\events\PlayerEvents\OnAddPlayer.hpp" />
     <ClInclude Include="src\backend\events\PlayerEvents\OnRemovePlayer.hpp" />
+    <ClInclude Include="src\backend\keybinding\KeyHandler.hpp" />
+    <ClInclude Include="src\classes\Vector.hpp" />
     <ClInclude Include="src\core\startup.hpp" />
     <ClInclude Include="src\engine\CEntitiyListSystem.hpp" />
     <ClInclude Include="src\engine\CInterfaces.hpp" />
     <ClInclude Include="src\engine\Engine.hpp" />
     <ClInclude Include="src\engine\EngineClasses\CBaseEntity.hpp" />
+    <ClInclude Include="src\engine\EngineClasses\CEntityIdentity.hpp" />
     <ClInclude Include="src\engine\EngineClasses\CEntityInstance.hpp" />
+    <ClInclude Include="src\engine\EngineClasses\CGameSceneNode.hpp" />
     <ClInclude Include="src\engine\EngineClasses\CHandle.hpp" />
     <ClInclude Include="src\engine\EngineClasses\EngineClassBase.hpp" />
     <ClInclude Include="src\engine\SchemaSystem.hpp" />

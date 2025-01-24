@@ -5,7 +5,7 @@
 SchemaSystem::SchemaSystem( ) {
 	uintptr_t createInterface = reinterpret_cast<uintptr_t>( GetProcAddress( GetModuleHandleA( "schemasystem.dll" ), "CreateInterface" ) );
 
-	this->m_InterfaceReg = *reinterpret_cast< InterfaceReg** >( g_Memory.FixMov( (uint8_t*)createInterface ) );
+	this->m_InterfaceReg = *reinterpret_cast< InterfaceReg** >( g_Memory->FixMov( (uint8_t*)createInterface ) );
 
 	for ( ; this->m_InterfaceReg; this->m_InterfaceReg = this->m_InterfaceReg->m_pNext ) {
 		this->m_SchemaInterface = this->m_InterfaceReg->m_CreateFn;

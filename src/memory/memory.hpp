@@ -2,11 +2,11 @@
 #include <includes.hpp>
 
 
-class memory
+class Memory
 {
 public:
-    explicit memory( ) = default;
-    ~memory( ) = default;
+    explicit Memory( ) = default;
+    ~Memory( ) = default;
 
     uint64_t FixCall( uint8_t* address );
     uint64_t FixMov( uint8_t* patternMatch );
@@ -17,36 +17,36 @@ public:
     std::string m_altv_module_name;
 
     template <typename T = uint8_t*>
-    inline T sub( uint8_t* address, int offset )
+    inline T Sub( uint8_t* address, int offset )
     {
         return reinterpret_cast< T >( address ) - offset;
     }
 
     template <typename T = uint8_t*>
-    inline T add( uint8_t* address, int offset )
+    inline T Add( uint8_t* address, int offset )
     {
         return reinterpret_cast< T >( address ) + offset;
     }
 
-    inline uintptr_t rip( uintptr_t address )
+    inline uintptr_t Rip( uintptr_t address )
     {
         return address + 4;
     }
 
     template <typename type>
-    type as_relative( type address, int offset = 3 )
+    type AsRelative( type address, int offset = 3 )
     {
         return reinterpret_cast< type >( reinterpret_cast< uintptr_t >( address ) + *reinterpret_cast< int* >( reinterpret_cast< uintptr_t >( address ) + offset ) + ( offset + 4i32 ) );
     }
 
     template <typename type = uintptr_t>
-    type as_relative( void* address, int offset = 3 )
+    type AsRelative( void* address, int offset = 3 )
     {
         return reinterpret_cast< type >( reinterpret_cast< uintptr_t >( address ) + *reinterpret_cast< int* >( reinterpret_cast< uintptr_t >( address ) + offset ) + ( offset + 4i32 ) );
     }
 
     template <typename type = uintptr_t>
-    type as_relative( uintptr_t address, int offset = 3 )
+    type AsRelative( uintptr_t address, int offset = 3 )
     {
         return ( type )( address + *reinterpret_cast< int* >( address + offset ) + ( offset + 4i32 ) );
     }
@@ -54,7 +54,7 @@ public:
 private:
 };
 
-inline memory g_Memory;
+inline std::unique_ptr<Memory> g_Memory = std::make_unique<Memory>( );
 
 typedef struct _PEB_LDR_DATA {
     BYTE       Reserved1[ 8 ];

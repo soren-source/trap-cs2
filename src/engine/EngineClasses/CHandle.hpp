@@ -11,6 +11,9 @@ class CHandle {
     C_BaseEntity* GetBaseEntity( ) const;
 
 public:
+    CHandle( ) {};
+    CHandle( uint32_t index ) : m_Index( index ) {};
+         
     bool operator==( CHandle rhs ) const { return m_Index == rhs.m_Index; }
     bool IsValid( ) const { return m_Index != INVALID_EHANDLE_INDEX; }
 

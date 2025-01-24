@@ -13,6 +13,8 @@
 #include <D3DX11tex.h>
 
 #include <ui/ui.hpp>
+#include <backend/caching/EntityCaching.hpp>
+#include <engine/EngineClasses/CBaseEntity.hpp>
 
 #pragma comment(lib, "d3dx11.lib")
 #pragma comment(lib, "d3d11.lib")
@@ -31,7 +33,7 @@ LRESULT __stdcall WndProc( const HWND wnd, UINT msg, WPARAM param, LPARAM lparam
 
 PresentHook::PresentHook( )
 {
-	this->m_HookContext = new Hook<tPresent>( reinterpret_cast<uintptr_t>( g_Memory.FindPattern( "gameoverlayrenderer64.dll", "48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 57 41 56 41 57 48 83 EC ? 41 8B E8" ) ) );
+	this->m_HookContext = new Hook<tPresent>( reinterpret_cast<uintptr_t>( g_Memory->FindPattern( "gameoverlayrenderer64.dll", "48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 57 41 56 41 57 48 83 EC ? 41 8B E8" ) ), "IDXGISwapchain::Present" );
 	auto result = this->m_HookContext->EnableHook( &DetourPresent );
 }
 
@@ -41,7 +43,22 @@ auto PresentHook::DetourPresent( IDXGISwapChain* swapchain, UINT syncInterval, U
 {
 	std::call_once( intializeFlag, [ swapchain ] { g_PresentHook->IntializeRenderingEnviroment( swapchain ); } );
 
+    g_PresentHook->BeginImGuiFrame( );
+
+    for ( const auto& entry : g_EntityCaching->GetPlayerCache( ) )
+    {
+        if ( !entry.m_pEntity ) continue;
+
+        auto worldPos = entry.m_pEntity->GetOriginPosition( );
+
+        Vector2 screenPos { };
+        if ( !worldPos.ToScreen( screenPos ) ) continue;
+
+        ImGui::GetBackgroundDrawList( )->AddText( { screenPos.x, screenPos.y }, ImColor( 255, 0, 0 ), "PLAYER" );
+    }
+
     //g_PresentHook->RenderGui( );
+    g_PresentHook->EndImGuiFrame( );
 
 	return g_PresentHook->m_HookContext->GetOriginal( )( swapchain, syncInterval, flags );
 }
@@ -141,8 +158,6 @@ auto PresentHook::EndImGuiFrame( ) -> void
 
 auto PresentHook::RenderGui( ) -> void
 {
-    this->BeginImGuiFrame( );
-
     ImGui::SetNextWindowSize( ui::size );
     ImGui::Begin( "weave", 0, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoBackground ); {
         ImGui::BeginChild( "nav", { 176, ImGui::GetWindowHeight( ) }, 0, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoScrollbar ); {
@@ -212,8 +227,6 @@ auto PresentHook::RenderGui( ) -> void
     ImGui::End( );
 
     ui::handle_anims( );
-
-    this->EndImGuiFrame( );
 }
 
 

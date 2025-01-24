@@ -16,21 +16,16 @@ OnAddPlayer::OnAddPlayer( )
 
 	uint64_t* vtable = *( uint64_t** )( instance );
 
-	this->m_AddPlayerContext = new Hook<tAddEntity>( (uintptr_t)vtable[ 15 ] );
+	this->m_AddPlayerContext = new Hook<tAddEntity>( (uintptr_t)vtable[ 15 ], "OnAddPlayer" );
 	if ( !this->m_AddPlayerContext->EnableHook( &ProcessOnAddPlayer ) )
 		printf("OnAddPlayer Hook failed!");
 }
 
-auto ReadPlayerInformations( CEntityInstance* entity, CHandle handle ) -> CachedPlayer 
-{
-	CBaseEntity* baseEntity = reinterpret_cast< CBaseEntity* >( entity );
-	//if ( baseEntity->IsPlayer( ) ) printf( "IS PLAYER %s\n", baseEntity->m_sSanitizedPlayerName( ) );
-
-	return CachedPlayer();
-}
-
 auto OnAddPlayer::ProcessOnAddPlayer( void* rcx, CEntityInstance* entity, CHandle handle ) -> void*
 {
+	const auto& baseEntity = ( CBaseEntity* )entity;
+	if ( !baseEntity->IsPlayer( ) ) return g_OnAddPlayer->m_AddPlayerContext->GetOriginal( )( rcx, entity, handle );
+
 	auto playerCache = g_EntityCaching->GetPlayerCache( );
 
 	auto it = std::find_if( playerCache.begin( ), playerCache.end( ), [ entity ] ( const CachedPlayer& entry ) {
@@ -38,9 +33,7 @@ auto OnAddPlayer::ProcessOnAddPlayer( void* rcx, CEntityInstance* entity, CHandl
 		} );
 
 	if ( it == playerCache.end( ) ) {
-		auto player = ReadPlayerInformations( entity, handle );
-		playerCache.push_back( player );
-		g_EntityCaching->SetPlayerCache( playerCache );
+		g_EntityCaching->ProcessEntityInformationsAndAddToCache( entity, handle );
 	}
 
 	return g_OnAddPlayer->m_AddPlayerContext->GetOriginal()(rcx, entity, handle);

@@ -7,7 +7,7 @@ template <typename T>
 class Hook {
 public:
 	Hook( ) { };
-	Hook( uintptr_t address ) : m_FunctionAddress( address ), m_HookStatus( -1 ), m_OriginalFunction( NULL ) { };
+	Hook( uintptr_t address, const char* name ) : m_FunctionAddress( address ), m_HookStatus( -1 ), m_OriginalFunction( NULL ), m_HookedFunctionName( name ) { };
 	~Hook( ) { delete this;	}
 
 	[[nodiscard]]
@@ -18,7 +18,7 @@ public:
 		status = MH_EnableHook( reinterpret_cast< PVOID >( this->m_FunctionAddress ) );
 		if ( status != MH_OK ) { std::cout << MH_StatusToString( status ) << std::endl; return false; }
 
-		printf( "[+] Hook at %p placed successfully\n", this->m_FunctionAddress );
+		printf( "[+] Hook %s at %p placed successfully\n", this->m_HookedFunctionName, this->m_FunctionAddress );
 
 		return true;
 	}
@@ -32,6 +32,7 @@ public:
 		return m_OriginalFunction;
 	}
 private:
+	const char* m_HookedFunctionName = "";
 	uint8_t m_HookStatus = -1;
 	uintptr_t m_FunctionAddress = 0;
 	T m_OriginalFunction = NULL;

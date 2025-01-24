@@ -15,9 +15,9 @@ OnRemovePlayer::OnRemovePlayer( )
 
 	uint64_t* vtable = *( uint64_t** )( instance );
 
-	this->m_RemovePlayerContext = new Hook<tRemoveEntity>( (uintptr_t)vtable[ 16 ] );
+	this->m_RemovePlayerContext = new Hook<tRemoveEntity>( (uintptr_t)vtable[ 16 ], "OnRemovePlayer" );
 	if ( !this->m_RemovePlayerContext->EnableHook( &ProcessOnRemovePlayer ) )
-		printf("OnAddPlayer Hook failed!");
+		printf("OnRemovePlayer Hook failed!");
 }
 
 auto OnRemovePlayer::ProcessOnRemovePlayer( void* rcx, CEntityInstance* entity, CHandle handle ) -> void*
