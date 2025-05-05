@@ -1,21 +1,23 @@
 #include "CInterfaces.hpp"
+#include "Engine.hpp"
 
 auto CInterfaces::CacheEngineInterfaces( ) -> bool
 {
-    auto createInterface = reinterpret_cast< tCreateInterface >( GetProcAddress( GetModuleHandleA( "client.dll" ), "CreateInterface" ) );
 
-    std::for_each( this->m_ClientInterfaceNames.begin( ), this->m_ClientInterfaceNames.end( ), [ this, createInterface ] ( const char* interfaceName ) {
-        int returnCode;
-        uintptr_t interfaceAddress = reinterpret_cast< uintptr_t >( createInterface( interfaceName, &returnCode ) );
-        this->PushInterface( std::make_pair( interfaceName, interfaceAddress ) );
-        printf( "Found %s at %p\n", interfaceName, interfaceAddress );
+    auto clientDll = g_Engine->GetInterfaceRegisterList( "client.dll" );
+    auto engine = g_Engine.get( );
+    std::for_each( this->m_ClientInterfaceNames.begin( ), this->m_ClientInterfaceNames.end( ), [ this, clientDll, engine ] ( const char* interfaceName ) {
+        uintptr_t* interfaceAddress = engine->GetInterface<uintptr_t>( clientDll, interfaceName );
+        this->PushInterface( std::make_pair( interfaceName, *interfaceAddress ) );
+        printf( "[+] Found %s at %p\n", interfaceName, interfaceAddress );
     } );
 
-    createInterface = reinterpret_cast< tCreateInterface >( GetProcAddress( GetModuleHandleA( "engine2.dll" ), "CreateInterface" ) );
-    int returnCode;
-    uintptr_t interfaceAddress = reinterpret_cast< uintptr_t >( createInterface( "GameResourceServiceClientV001", &returnCode ) );
-    this->PushInterface( std::make_pair( "GameResourceServiceClientV001", interfaceAddress ) );
-    printf( "Found %s at %p\n", "GameResourceServiceClientV001", interfaceAddress );
+    auto engineDll = g_Engine->GetInterfaceRegisterList( "engine2.dll" );
+    auto gameResource = g_Engine->GetInterface( engineDll, "GameResourceServiceClientV001" );
+    this->PushInterface( std::make_pair( "GameResourceServiceClientV001", gameResource ) );
+    printf( "[+] Found %s at %p\n", "GameResourceServiceClientV001", gameResource );
+
+    this->m_pEngineClient = g_Engine->GetInterface<IEngineClient>( engineDll, "Source2EngineToClient001" );
 
     return true;
 }

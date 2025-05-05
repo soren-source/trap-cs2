@@ -30,6 +30,9 @@
     <ClCompile Include="src\engine\Engine.cpp" />
     <ClCompile Include="src\engine\EngineClasses\CBaseEntity.cpp" />
     <ClCompile Include="src\engine\SchemaSystem.cpp" />
+    <ClCompile Include="src\feature\Feature.cpp" />
+    <ClCompile Include="src\feature\Visuals\PlayerVisuals.cpp" />
+    <ClCompile Include="src\gui\gui.cpp" />
     <ClCompile Include="src\hooking\PresentHook.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\memory\hooking.cpp" />
@@ -54,6 +57,7 @@
     <ClInclude Include="src\backend\caching\EntityCaching.hpp" />
     <ClInclude Include="src\backend\events\PlayerEvents\OnAddPlayer.hpp" />
     <ClInclude Include="src\backend\events\PlayerEvents\OnRemovePlayer.hpp" />
+    <ClInclude Include="src\backend\keybinding\Keybind.hpp" />
     <ClInclude Include="src\backend\keybinding\KeyHandler.hpp" />
     <ClInclude Include="src\classes\Vector.hpp" />
     <ClInclude Include="src\core\startup.hpp" />
@@ -65,12 +69,19 @@
     <ClInclude Include="src\engine\EngineClasses\CEntityInstance.hpp" />
     <ClInclude Include="src\engine\EngineClasses\CGameSceneNode.hpp" />
     <ClInclude Include="src\engine\EngineClasses\CHandle.hpp" />
+    <ClInclude Include="src\engine\EngineClasses\CSkeletonInstance.hpp" />
     <ClInclude Include="src\engine\EngineClasses\EngineClassBase.hpp" />
+    <ClInclude Include="src\engine\Interfaces\IEngineClient.hpp" />
+    <ClInclude Include="src\engine\Interfaces\Interface.hpp" />
     <ClInclude Include="src\engine\SchemaSystem.hpp" />
+    <ClInclude Include="src\feature\Feature.hpp" />
+    <ClInclude Include="src\feature\Visuals\PlayerVisuals.hpp" />
+    <ClInclude Include="src\gui\gui.hpp" />
     <ClInclude Include="src\hooking\PresentHook.hpp" />
     <ClInclude Include="src\includes.hpp" />
     <ClInclude Include="src\memory\hooking.hpp" />
     <ClInclude Include="src\memory\memory.hpp" />
+    <ClInclude Include="src\memory\virtual.hpp" />
     <ClInclude Include="thirdparty\imgui\backend\imgui_impl_dx11.h" />
     <ClInclude Include="thirdparty\imgui\backend\imgui_impl_win32.h" />
     <ClInclude Include="thirdparty\imgui\imconfig.h" />
@@ -202,6 +213,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
       <AdditionalDependencies>$(DXSDK_DIR)lib\x64\d3d11.lib;$(DXSDK_DIR)lib\x64\d3dx11.lib;$(ProjectDir)thirdparty\imgui\freetype\freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

@@ -5,6 +5,7 @@
 #include "SchemaSystem.hpp"
 #include <backend/events/PlayerEvents/OnAddPlayer.hpp>
 #include <backend/events/PlayerEvents/OnRemovePlayer.hpp>
+#include <backend/caching/EntityCaching.hpp>
 
 Engine::Engine( ) {
 	this->InitializeEngineComponents( );
@@ -24,4 +25,12 @@ auto Engine::InitializeEngineComponents( ) -> void
 
 	g_OnAddPlayer = std::make_unique<OnAddPlayer>( );
 	g_OnRemovePlayer = std::make_unique<OnRemovePlayer>( );
+
+	g_EntityCaching->CacheAllEntitiesOnLoad( );
+}
+
+auto Engine::GetInterfaceRegisterList( const char* moduleName ) -> InterfaceReg*
+{
+	const auto& createInterface = GetProcAddress( GetModuleHandleA( moduleName ), "CreateInterface" );
+	return *(InterfaceReg**)( g_Memory->FixMov( (uint8_t*)createInterface ) );
 }

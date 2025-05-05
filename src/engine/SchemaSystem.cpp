@@ -9,7 +9,7 @@ SchemaSystem::SchemaSystem( ) {
 
 	for ( ; this->m_InterfaceReg; this->m_InterfaceReg = this->m_InterfaceReg->m_pNext ) {
 		this->m_SchemaInterface = this->m_InterfaceReg->m_CreateFn;
-		printf( "Found SchemaInterface %s at %p\n", this->m_InterfaceReg->m_pName, ( uintptr_t )this->m_InterfaceReg->m_CreateFn );	
+		printf( "[+] Found SchemaInterface %s at %p\n", this->m_InterfaceReg->m_pName, ( uintptr_t )this->m_InterfaceReg->m_CreateFn );	
 	}
 }
 
@@ -40,9 +40,13 @@ auto SchemaManager::CacheSchemaData( ) -> void
 			const auto& classPtr = declaredClass->classPtr;
 			if ( !classPtr ) continue;
 
+			//std::cout << "class " << className << " {\n      public:\n";
+
 			for ( size_t i = 0; i < classPtr->fieldsCount; i++ ) {
 				const auto& field = &classPtr->fields[ i ];
 				if ( !field || !field->name ) continue;
+
+				//std::cout << "SCHEMA_FIELD( " << field->name << ", " << '"' << className <<  '"' << ", " << '"' << field->name << '"' << ", int32_t, this ); " << "\n";
 
 				schema_offset_t schemaOffset;
 				schemaOffset.class_name = className;
@@ -53,6 +57,8 @@ auto SchemaManager::CacheSchemaData( ) -> void
 
 				//printf( "Field %s in %s found with offset %i\n", field->name, className, field->singleInheritanceOffset );
 			}
+
+			//std::cout << "};" << std::endl;
 		}
 	}
 }

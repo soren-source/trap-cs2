@@ -1,5 +1,6 @@
 #pragma once
 #include <includes.hpp>
+#include "Interfaces/IEngineClient.hpp"
 class CInterfaces {
 public:
 	explicit CInterfaces( ) = default;
@@ -26,6 +27,7 @@ public:
 		return std::nullopt;
 	}
 
+	IEngineClient* m_pEngineClient = nullptr;
 private:
 	typedef void* ( __fastcall* tCreateInterface )( const char* interfaceName, int* returnCode );
 

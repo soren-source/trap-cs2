@@ -7,6 +7,11 @@ public:
 	
 	auto GetInstance( ) -> CEntityListSystem*;
 
+	int GetHighestEntityIndex( )
+	{
+		return *reinterpret_cast< int* >( reinterpret_cast< std::uintptr_t >( this ) + 0x20F0 );
+	}
+
 private:
 	typedef void* ( __thiscall* tGetEntityByIndex )( void* instance, int index );
 	tGetEntityByIndex m_GetEntityByIndex;

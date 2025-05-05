@@ -10,7 +10,7 @@ struct ViewMatrix {
 	float matrix[ 4 ][ 4 ];
 };
 
-bool Vector3::ToScreen( Vector2& out ) 
+bool Vector3::ToScreen( ImVec2& out ) 
 {
 	static uintptr_t viewMatrix = 0;
 	if ( !viewMatrix )

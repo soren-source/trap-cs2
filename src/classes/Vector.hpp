@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <sstream>
-
+#include <imgui.h>
 class Vector2;
 
 class Vector3 {
@@ -109,7 +109,7 @@ public:
 		return Vector3( x * factor, y * factor, z * factor );
 	}
 
-	bool ToScreen( Vector2& to );
+	bool ToScreen( ImVec2& to );
 };
 
 

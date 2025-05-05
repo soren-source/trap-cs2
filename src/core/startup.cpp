@@ -5,6 +5,8 @@
 #include <engine/EngineClasses/CEntityInstance.hpp>
 #include <hooking/PresentHook.hpp>
 #include <minhook/MinHook.h>
+#include <feature/Feature.hpp>
+#include <feature/Visuals/PlayerVisuals.hpp>
 
 Startup::Startup( ) {
 	this->AllocateConsole( );
@@ -14,8 +16,10 @@ Startup::Startup( ) {
 auto Startup::AllocateConsole( ) -> void {
 	if ( !this->m_IsDebug ) return;
 
-	if ( AllocConsole( ) )
+	if ( AllocConsole( ) ) {
 		freopen_s( ( FILE** )stdout, "CONOUT$", "w", stdout );
+		
+	}
 
 }
 
@@ -27,6 +31,8 @@ auto Startup::IntializeCheatStart( ) -> void
 
 	g_Engine = std::make_unique<Engine>( );
 	g_PresentHook = std::make_unique<PresentHook>( );
+
+	g_FeatureManager->AddFeature( new PlayerVisuals( ) );
 
 	while ( !GetAsyncKeyState( VK_END ) & 1 ) {
 		std::this_thread::sleep_for( std::chrono::milliseconds( 10 ) );

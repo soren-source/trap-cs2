@@ -1,4 +1,5 @@
 #pragma once
+#define IMGUI_DEFINE_MATH_OPERATORS
 
 #include <Windows.h>
 #include <string>
@@ -7,3 +8,5 @@
 #include <iostream>
 #include <vector>
 #include <optional>
+
+#include <memory/virtual.hpp>

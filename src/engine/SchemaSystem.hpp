@@ -3,17 +3,7 @@
 #include <unordered_map>
 #include <string>
 
-namespace Virtual {
-    template <typename T>
-    inline T Get( void* instance, const unsigned int index ) {
-        return ( *static_cast< T** >( static_cast< void* >( instance ) ) )[ index ];
-    }
-
-    template <typename T>
-    inline T Get( const void* instance, const unsigned int index ) {
-        return ( *static_cast< T* const* >( static_cast< const void* >( instance ) ) )[ index ];
-    }
-}
+#include <memory/virtual.hpp>
 
 struct SchemaClassInfoData;
 class SchemaSystemTypeScope;

@@ -97,6 +97,27 @@
     <Filter Include="Quelldateien\backend\classes">
       <UniqueIdentifier>{044dd5e2-70b4-438a-8248-3896ebfd7845}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\gui">
+      <UniqueIdentifier>{f90df37a-9cba-4b9f-973e-a76f34b63c40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\gui">
+      <UniqueIdentifier>{622b63ff-4523-40b6-b1cf-86512b89b82d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\engine\Interfaces">
+      <UniqueIdentifier>{1b25c62e-9d94-4981-b2d0-e2afa5c8409c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\feature">
+      <UniqueIdentifier>{5c244607-bfed-45c9-925c-4d4bc6642c0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\feature">
+      <UniqueIdentifier>{6e84006c-af2f-47a6-8c30-745bdf11fc20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\feature\Visuals">
+      <UniqueIdentifier>{31029c4f-7009-4f9c-89ca-598dc2d7dfa6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\feature\Visuals">
+      <UniqueIdentifier>{7a7a3824-fb4e-40e1-bad3-2eed0e33f859}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -185,6 +206,15 @@
     </ClCompile>
     <ClCompile Include="src\classes\Vector.cpp">
       <Filter>Quelldateien\backend\classes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gui\gui.cpp">
+      <Filter>Quelldateien\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\feature\Feature.cpp">
+      <Filter>Quelldateien\feature</Filter>
+    </ClCompile>
+    <ClCompile Include="src\feature\Visuals\PlayerVisuals.cpp">
+      <Filter>Quelldateien\feature\Visuals</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -328,6 +358,30 @@
     </ClInclude>
     <ClInclude Include="src\backend\keybinding\KeyHandler.hpp">
       <Filter>Headerdateien\backend\keybinding</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gui\gui.hpp">
+      <Filter>Headerdateien\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\backend\keybinding\Keybind.hpp">
+      <Filter>Headerdateien\backend\keybinding</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\EngineClasses\CSkeletonInstance.hpp">
+      <Filter>Headerdateien\engine\EngineClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\Interfaces\Interface.hpp">
+      <Filter>Headerdateien\engine\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\Interfaces\IEngineClient.hpp">
+      <Filter>Headerdateien\engine\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\memory\virtual.hpp">
+      <Filter>Headerdateien\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="src\feature\Feature.hpp">
+      <Filter>Headerdateien\feature</Filter>
+    </ClInclude>
+    <ClInclude Include="src\feature\Visuals\PlayerVisuals.hpp">
+      <Filter>Headerdateien\feature\Visuals</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

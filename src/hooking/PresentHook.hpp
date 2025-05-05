@@ -11,10 +11,7 @@ public:
 	static auto DetourPresent( IDXGISwapChain* swapchain, UINT syncInterval, UINT flags ) -> HRESULT;
 
 	auto IntializeRenderingEnviroment( IDXGISwapChain* swapchain ) -> bool;
-	auto RenderGui( ) -> void;
-
 	auto Uninitialize( ) -> void;
-
 	auto BeginImGuiFrame( ) -> void;
 	auto EndImGuiFrame( ) -> void;
 
@@ -31,9 +28,6 @@ private:
 	IDXGISwapChain* m_pSwapChain = nullptr;
 	ID3D11Texture2D* m_pBackBuffer = nullptr;
 	ID3D11RenderTargetView* m_pRenderTargetView = nullptr;
-
-	ID3D11ShaderResourceView* m_Logo = nullptr;
-	ID3D11ShaderResourceView* m_Avatar = nullptr;
 };
 
 inline std::unique_ptr<PresentHook> g_PresentHook;

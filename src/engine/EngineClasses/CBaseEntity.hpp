@@ -12,6 +12,7 @@ public:
 	SCHEMA_FIELD( m_pGameSceneNode, "C_BaseEntity", "m_pGameSceneNode",	CGameSceneNode*, this );
 	SCHEMA_FIELD( m_sSanitizedPlayerName, "CCSPlayerController", "m_sSanitizedPlayerName", const char*, this );
 
+
 	auto IsPlayer( ) -> bool;
 	auto GetOriginPosition( ) -> Vector3;
 
